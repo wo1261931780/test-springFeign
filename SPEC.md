@@ -11,9 +11,10 @@
 
 | 组件 | 版本 |
 |------|------|
-| Spring Boot | 3.2.5 |
-| Java | 17 |
-| Spring Web | 3.2.5 |
+| Spring Boot | 3.4.4 |
+| Java | 25 |
+| Lombok | 1.18.40 |
+| Spring Web | 由 Spring Boot 3.4.4 管理 |
 
 ## 3. 功能规格
 
@@ -44,32 +45,37 @@ src/main/java/wo1261931780/testspringFeign/
 |------|------|------|------|
 | 用户列表 | GET | /users | 返回 10 个模拟用户 |
 
-### 3.4 核心代码
+### 3.4 架构图
 
-**DemoController** - 用户列表接口:
-- 使用 `IntStream.rangeClosed(1, 10)` 生成 10 个用户
-- 返回 List<User> 列表
-
-**User** - 用户实体:
-- 包含 name (String) 和 age (int) 字段
+```mermaid
+graph LR
+    A[客户端] --> B[DemoController<br/>GET /users]
+    B --> C[UserService]
+    C --> D[UserServiceImpl]
+    D --> E[User POJO]
+    E --> B
+```
 
 ## 4. 配置信息
 
-- **Java 版本**: 17
+- **Java 版本**: 25
 - **编码格式**: UTF-8
 - **端口**: 默认 8080
 
-## 5. 编译信息
+## 5. 升级记录
+
+- **2026-04-23**: 升级到 Spring Boot 3.4.4, Java 25, Lombok 1.18.40
+  - 升级 Spring Boot 从 3.2.5 到 3.4.4
+  - 升级 Java 从 17 到 25
+  - 添加 Lombok 1.18.40 依赖和注解处理器配置
+  - 添加 maven-compiler-plugin 配置
+
+## 6. 编译信息
 
 - **Maven 编译**: 通过
 - **打包方式**: JAR
 
-## 6. README.md 状态
+## 7. 备注
 
-- 存在，包含 Feign 架构图和调用流程图
-- 内容较为完整，是一份技术演示文档
-- 注意：项目中并未实际使用 Feign 依赖，仅作为演示项目
-
-## 7. .gitignore 状态
-
-- 存在但不够完整，缺少内容同其他项目
+- 项目并未实际使用 Feign 依赖，仅作为演示项目
+- .gitignore 状态: 完整
