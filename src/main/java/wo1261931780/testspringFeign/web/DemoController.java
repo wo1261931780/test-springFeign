@@ -8,13 +8,11 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 /**
- * Created by Intellij IDEA.
- * Project:test-springFeign
- * Package:wo1261931780.testspringFeign.web
+ * 用户控制器
+ * 提供用户相关的REST API接口
  *
  * @author liujiajun_junw
  * @Date 2024-04-19-58  星期一
- * @Description
  */
 public class DemoController {
 	@GetMapping("/users")
